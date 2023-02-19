@@ -10,7 +10,7 @@ surf(x,y,z,'FaceColor',[0.7 0.7 0.7],'EdgeColor','none');
 axis off; axis equal; grid off; box off; 
 lighting gouraud
 camlight; hold on; 
-plot3(X,Y,Z,'g.','markersize',5)
+plot3(X,Y,Z,'.','color',[0,0.813,1],'markersize',5)
 view(degree1,degree2);
 set(gca,'xticklabel',[],'yticklabel',[],'zticklabel',[]);
 end

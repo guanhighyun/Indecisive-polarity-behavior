@@ -1,15 +1,47 @@
-% Plot time till polarization with pheromone gradients of different steepness.
+% Simulations were performed with 3000 Cdc42, 170 Bem1-GEF, 30 Far1-GEF,
+% and 2500 receptors, and the initial conditions were uniformly distributed 
+% molecules. Uniform pheromone was applied to the domain from 0 to 1000 
+% seconds to generate relocating polarity sites. A pheromone gradient was 
+% applied to the domain from 1000 to 4000 seconds for stabilization of
+% the polarity sites.
+
+% Plot Ripley's K function values.
 load('FigureData/Figure5D.mat')
-% Data cleaning for generating the box chart and the swarm chart.
-index = repelem(pheromone_concentration,1,numel(random_seeds));
-index = categorical(index);
-data = reshape(first_pol_time,1,numel(first_pol_time));
-% Generate the figure.
-figure
-swarmchart(index,data/60,100,'b','filled'); hold on;
-boxchart(index,data/60,'boxfacecolor','b','BoxFaceColorMode','manual',...
-'markercolor','none','linewidth',3.5);
+seeds = 10;
+% Color map for the plots.
+cmap = cool(seeds);
+% Time in the unit of minutes.
+time = (0:10:4000)/60;
+figure('units','pixels','position',[300 300 500 600]); 
+for j = 1:seeds
+    subplot(2,2,[3,4]); hold on
+    % Plot time series of K
+    plot(time,K(j,:),'color',cmap(j, :),'linewidth',1)
+end
+% Mark the time point where uniform pheromone was switched to a pheromone
+% gradient.
+patch([0,0,1000/60,1000/60],[0,4,4,0],'r',...
+    'edgecolor','r','facealpha',0.15,'edgealpha',0.15)
+plot([1000/60,1000/60],[0,4],'k-','linewidth',4)
+patch([4000/60,4000/60,1000/60,1000/60],[0,4,4,0],'c',...
+    'edgecolor','c','facealpha',0.15,'edgealpha',0.15)
+ylim([0,4])
+xlim([0,4000/60])
+xlabel('Time (min)')
+ylabel('K')
 set(gca,'fontsize',25)
-xlabel('Pheromone concentration at the center of the source (nM)')
-ylabel('Time till stabilization (min)')
-ylim([0, Inf])
+
+% Mark one line of K in black and  plotted its snapshots of Cdc42-GTP
+% at different time points. 
+plot(time,K(1,:),'color','k','linewidth',4)
+load('Coordinates/Figure5D_coordinates.mat')
+L = 8.8623; % domain length
+subplot(2,2,1)
+plot(x_1,y_1,'b.')
+xticks([]); yticks([]); ylim([0,L]); xlim([0,L]); axis square;
+xlabel('1 min','fontsize',25)
+
+subplot(2,2,2)
+plot(x_2,y_2,'b.')
+xticks([]); yticks([]); ylim([0,L]); xlim([0,L]); axis square;
+xlabel('45 min','fontsize',25)

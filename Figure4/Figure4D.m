@@ -17,7 +17,7 @@ index = categorical(index);
 % for each simulated cells.
 data = reshape(first_pol_time,1,numel(first_pol_time));
 % Generate the plot.
-swarmchart(index,data/60,60,'k','filled'); hold on;
+swarmchart(index,data/60,30,'k','filled'); hold on;
 boxchart(index,data/60,'boxfacecolor','b','BoxFaceColorMode','manual',...
 'markercolor','none','linewidth',3.5);
 set(gca,'fontsize',25)

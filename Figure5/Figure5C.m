@@ -1,47 +1,19 @@
-% Simulations were performed with 3000 Cdc42, 170 Bem1-GEF, 30 Far1-GEF,
-% and 2500 receptors, and the initial conditions were uniformly distributed 
-% molecules. Uniform pheromone was applied to the domain from 0 to 1000 
-% seconds to generate relocating polarity sites. A pheromone gradient was 
-% applied to the domain from 1000 to 4000 seconds for stabilization of
-% the polarity sites.
+% Plot the spatial distribution of 2D pheromone gradients and 3D pheromone
+% gradients. All concentrations are time-averaged from 50 simulations.
 
-% Plot Ripley's K function values.
 load('FigureData/Figure5C.mat')
-seeds = 10;
-% Color map for the plots.
-cmap = cool(seeds);
-% Time in the unit of minutes.
-time = (0:10:4000)/60;
-figure('units','pixels','position',[300 300 500 600]); 
-for j = 1:seeds
-    subplot(2,2,[3,4]); hold on
-    % Plot time series of K
-    plot(time,K(j,:),'color',cmap(j, :),'linewidth',1)
-end
-% Mark the time point where uniform pheromone was switched to a pheromone
-% gradient.
-patch([0,0,1000/60,1000/60],[0,4,4,0],'r',...
-    'edgecolor','r','facealpha',0.15,'edgealpha',0.15)
-plot([1000/60,1000/60],[0,4],'k-','linewidth',4)
-patch([4000/60,4000/60,1000/60,1000/60],[0,4,4,0],'c',...
-    'edgecolor','c','facealpha',0.15,'edgealpha',0.15)
-ylim([0,4])
-xlim([0,4000/60])
-xlabel('Time (min)')
-ylabel('K')
+figure('position',[300 300 400 450]); axis square; hold on
+p1 = bar(distance,nanmean(concentration_3D),...
+    'facecolor','#4DBEEE','linewidth',4,'facealpha',0.4,'edgecolor','#0072BD');
+errorbar(distance,nanmean(concentration_3D),nanstd(concentration_3D),...
+    '.','linewidth',4,'color','#0072BD')
+p2 = bar(distance,nanmean(concentration_2D),...
+    'facecolor','#D95319','linewidth',4,'facealpha',0.4,'edgecolor','#A2142F');
+errorbar(distance,nanmean(concentration_2D),nanstd(concentration_2D),...
+    '.','linewidth',4,'color','#A2142F')
+legend([p1 p2], '3D', '2D')
+set(gcf,'Position',[300 300 600 500]); 
 set(gca,'fontsize',25)
-
-% Mark one line of K in black and  plotted its snapshots of Cdc42-GTP
-% at different time points. 
-plot(time,K(1,:),'color','k','linewidth',4)
-load('Coordinates/Figure5C_coordinates.mat')
-L = 8.8623; % domain length
-subplot(2,2,1)
-plot(x_1,y_1,'b.')
-xticks([]); yticks([]); ylim([0,L]); xlim([0,L]); axis square;
-xlabel('1 min','fontsize',25)
-
-subplot(2,2,2)
-plot(x_2,y_2,'b.')
-xticks([]); yticks([]); ylim([0,L]); xlim([0,L]); axis square;
-xlabel('45 min','fontsize',25)
+xlabel('Distance from the pheromone source (\mum)')
+ylabel('Pheromone concentration (nM)')
+hold off

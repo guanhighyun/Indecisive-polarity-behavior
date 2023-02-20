@@ -1,7 +1,7 @@
 % Plot time evolution of molecule number and compare them between 2D and 3D
 % simulations of the combined polarity circuit. Simulations were performed
 % with 3000 Cdc42, 170 Bem1-GEF, 30 Far1-GEF, and 2500 receptors. All
-% molecules are distributed uniformly at the first time point.
+% molecules were distributed uniformly at the first time point.
 
 load('FigureData/FigureS5.mat')
 figure('position',[300,300,1500,500])

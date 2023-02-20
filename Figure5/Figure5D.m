@@ -1,8 +1,8 @@
 % Simulations were performed with 3000 Cdc42, 170 Bem1-GEF, 30 Far1-GEF,
 % and 2500 receptors, and the initial conditions were uniformly distributed 
 % molecules. Uniform pheromone was applied to the domain from 0 to 1000 
-% seconds to generate relocating polarity sites. A pheromone gradient was 
-% applied to the domain from 1000 to 4000 seconds for stabilization of
+% seconds to generate relocating polarity sites. A pheromone gradient (0-1 nM) 
+% was applied to the domain from 1000 to 4000 seconds for stabilization of
 % the polarity sites.
 
 % Plot Ripley's K function values.

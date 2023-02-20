@@ -1,5 +1,6 @@
 % Here we plotted Ripley's K function values calculated from the simulations 
-% with 3000 initially uniformly distributed Cdc42 and 70 Bem1-GEF.
+% with 3000 initially uniformly distributed cytosolic Cdc42-GDP and 70 Bem1-GEF.
+
 load('FigureData/FigureS2A.mat')
 seeds = 10;
 % Color map for the plots
@@ -38,7 +39,7 @@ xticks([]); yticks([]); ylim([0,L]); xlim([0,L]); axis square;
 xlabel('65 min','fontsize',25)
 
 % Here we plotted Ripley's K function values calculated from the simulations 
-% with 3000 initially uniformly distributed Cdc42 and 120 Bem1-GEF.
+% with 3000 initially uniformly distributed cytosolic Cdc42-GDP and 120 Bem1-GEF.
 load('FigureData/FigureS2B.mat')
 seeds = 10;
 % Color map for the plots

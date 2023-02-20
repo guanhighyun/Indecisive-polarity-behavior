@@ -1,5 +1,5 @@
 % Here we plotted Ripley's K function values calculated from the simulations 
-% with 3000 initially uniformly distributed Cdc42, 80 Bem1-GEF, 30
+% with 3000 initially uniformly distributed cytosolic Cdc42-GDP, 80 Bem1-GEF, 30
 % Far1-GEF, and 2500 receptors.
 load('FigureData/FigureS3A.mat')
 seeds = 10;
@@ -39,7 +39,7 @@ xticks([]); yticks([]); ylim([0,L]); xlim([0,L]); axis square;
 xlabel('66 min','fontsize',25)
 
 % Here we plotted Ripley's K function values calculated from the simulations 
-% with 3000 initially uniformly distributed Cdc42, 280 Bem1-GEF, 30
+% with 3000 initially uniformly distributed cytosolic Cdc42-GDP, 280 Bem1-GEF, 30
 % Far1-GEF, and 2500 receptors.
 load('FigureData/FigureS3B.mat')
 seeds = 10;

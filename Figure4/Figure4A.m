@@ -1,6 +1,6 @@
 % Plot the percentage of polarized states in the last 2000 seconds of each
 % simulation. The percentage = (number of K values >=1.5)/(all K values 
-% from 2000 seconds to 4000 seconds).
+% from 2000 seconds to 4000 seconds). 
 
 % Load the x and y values of the figure.
 % Sigma is the dispersion level of receptor clusters. It is the standard

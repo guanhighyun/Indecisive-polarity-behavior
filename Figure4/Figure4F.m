@@ -1,6 +1,4 @@
-% The 3D simulations were performed with 3000 uniformly distributed Cdc42-GTP, 
-% 170 Bem1-GEF, 30 Far1-GEF and 2500 receptors.
-% Plot the snapshots of Cdc42-GTP distribution at different time points. 
+% Plot the snapshots of 3D Cdc42-GTP distribution at different time points. 
 load('Coordinates/Figure4F_coordinates.mat')
 r = 2.5;
 figure('units','pixels','position',[300 300 1800 600]); 

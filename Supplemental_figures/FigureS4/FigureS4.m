@@ -1,4 +1,6 @@
-% Plot the number of clusters across time
+% Detect clusters by the algorithm based on Voronoi tessellation ("pipeline.m").
+% Plot the number of clusters across time (n = 10).
+
 % Figure S4A
 load('../FigureData/FigureS4A.mat') % Core polarity circuit
 time = (0:10:4000)/60; % Convert seconds to minutes

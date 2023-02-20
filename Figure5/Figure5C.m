@@ -17,3 +17,28 @@ set(gca,'fontsize',25)
 xlabel('Distance from the pheromone source (\mum)')
 ylabel('Pheromone concentration (nM)')
 hold off
+
+% Visualize the distance from the pheromone source.
+L = 8.8623;
+space = 0.3;
+draw_filled_circle(L,space)
+
+function draw_filled_circle(L,space)
+N = floor(L/4/space); 
+centers = repmat([3/4*L,3/4*L],[N,1]);
+center = [3/4*L,3/4*L];
+radius = [0,space:space:L/4];
+figure('units','pixels','position',[0 0 1000,300]);
+tiledlayout(1,numel(radius)-1,'tilespacing','compact')
+for i = 1:numel(radius)-1
+    nexttile; hold on; 
+    viscircles(centers,radius(2:end),'color','k','linewidth',3)
+    axis equal
+    for curr_rad = radius(i):0.05:radius(i+1)
+        viscircles(center,curr_rad,'color','k','linewidth',0.2)
+    end
+    box on
+    axis off 
+    set(gca, 'color', 'none');
+end
+end

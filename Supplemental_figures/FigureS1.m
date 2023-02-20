@@ -1,3 +1,5 @@
+% Compare clusters with different values of K.
+
 load('FigureData/FigureS1.mat')
 L = 8.8623; % domain length
 r = 0.5:0.1:L/2; % search radius for calculation of the K value. See Methods.

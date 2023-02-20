@@ -1,9 +1,5 @@
-% Simulations were performed with 3000 uniformly distributed Cdc42-GTP, 
-% 170 Bem1-GEF and 2500 receptors. Far1-GEF were fixed on the domain. 
-% The number of Far1-GEF was varied.
-
 % Plot the relationship between time till polarization and number of
-% Far1-GEF.
+% fixed Far1-GEF.
 
 load('FigureData/Figure4D.mat'); 
 
@@ -11,10 +7,9 @@ load('FigureData/Figure4D.mat');
 figure('position',[300,300,500,400]);
 % Create a list of number of Far1-GEF clusters for the swarmchart and boxchart.
 index = repelem(Far_totalcluster,1,numel(random_seeds));
-% Make a list of categorical variables for nicer plots.
+% Make the list of categorical variables for nicer plots.
 index = categorical(index);
-% For nicer plots, reshape the data storing time til the first polarization 
-% for each simulated cells.
+% Reshape the data for nicer plots.
 data = reshape(first_pol_time,1,numel(first_pol_time));
 % Generate the plot.
 swarmchart(index,data/60,30,'k','filled'); hold on;
@@ -24,7 +19,7 @@ set(gca,'fontsize',25)
 xlabel('Number of Far1-GEF molecules')
 ylabel('Time till stabilization (min)')
 
-%% Generate the distribution of 1, 9, 12 and 14 Far1-GEF molecules.
+%% Visualize the spatial distribution of 1, 9, 12 and 14 fixed Far1-GEF molecules.
 figure('position',[300,300,400,100]);
 L = 8.8623; % domain length
 subplot(1,4,1)

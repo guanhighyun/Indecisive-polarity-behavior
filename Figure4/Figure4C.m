@@ -1,7 +1,3 @@
-% Simulations were performed with 3000 uniformly distributed Cdc42-GTP, 
-% 170 Bem1-GEF and 2500 receptors. Receptor residence time ~= 5.8 min (k = 0.002/s).
-% Number of Far1-GEF were varied.
-
 % Here we plotted the relationship between K at the final time point (4000
 % seconds) and number of Far1-GEF.
 load('FigureData/Figure4C.mat')
@@ -28,14 +24,14 @@ xlim([0 55]);
 ylim([0 4]);
 set(gca,'FontSize',25);
 
-% Plot the start and end of the bifurcation
+% Plot the start and end of the bifurcation.
 plot([22,22],[0.4068,3.0224],'LineWidth',2,'LineStyle','--','Color',[0 0 0]);
 plot([33,33],[0.4703,2.7373],'LineWidth',2,'LineStyle','--','Color',[0 0 0]);
 
-% Mark a point where all K>1.5 and show a snapshot of the Cdc42-GTP
+% Mark a point where all K>=1.5 and show a snapshot of the Cdc42-GTP
 % distribution at 4000 seconds.
 plot(n_FarGEF(5),nanmean(data1(:,5)),'b.','Markersize',30);
-% Mark a point where all K<=1.5 and show a snapshot of the Cdc42-GTP
+% Mark a point where all K<1.5 and show a snapshot of the Cdc42-GTP
 % distribution at 4000 seconds.
 plot(n_FarGEF(16),nanmean(data2(:,16)),'b.','Markersize',30);
 

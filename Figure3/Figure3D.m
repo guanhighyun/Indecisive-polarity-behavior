@@ -1,6 +1,7 @@
 % We plotted K values of the simulations with 3000 Cdc42 and 170 Bem1-GEF.
 % The initial condition is pre-polarized Cdc42-GTP and uniformly
 % distributed cytosolic Bem1-GEF.
+
 load('FigureData/Figure3D.mat')
 seeds = 10;
 % Color map for the plots

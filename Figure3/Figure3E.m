@@ -1,6 +1,6 @@
 % We plotted K values of the simulations with 3000 Cdc42 and 170 Bem1-GEF.
-% The initial condition is pre-polarized active receptors 
-% and all other molecules are uniformly distributed.
+% The initial condition was pre-polarized active receptors 
+% and all other molecules were uniformly distributed.
 
 load('FigureData/Figure3E.mat')
 seeds = 10;

@@ -1,6 +1,7 @@
 % Here we plotted time evolution of K values of the simulations with 
 % 3000 Cdc42 and 170 Bem1-GEF. The initial conditions are uniformly 
 % distributed cytosolic molecules.
+
 load('FigureData/Figure3C.mat')
 seeds = 10;
 % Color map for the plots.

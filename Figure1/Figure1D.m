@@ -5,14 +5,13 @@
 n_Cdc42_list = [1800,2000,2200,2500,2800,3000,3200,3500]; BemGEF_list = 0:0.5:1000; 
 % Number of realizations in each regime.
 seeds = 10; 
-% Ripley's K values are calculated from the coordinates of Cdc42-GTP 
-% collected every 10 seconds from 2000 seconds to 4000 seconds of each 
-% simulation, so that produced 201 K values.
+% Number of Ripley's K values for each regime.
 standard_num_K = 201*2*seeds; 
 % The file path of stored K values.
 K_file_path = '../K_values/2DCorePolarity';
 
-% Threshold difference in frequency of K for a transient polarity regime
+% Threshold values of difference in frequency of K for identification of the
+% transient polarity regime
 upper_threshold = 2814;
 lower_threshold = -2814;
 
@@ -20,11 +19,11 @@ K_transient_polarity_regime = [];
 for i = 1:numel(n_Cdc42_list)
     n_Cdc42 = n_Cdc42_list(i);
     load(sprintf('%s/K_%g.mat',K_file_path,n_Cdc42));
-    % Get the differences in frequency of K.
+    % Calculate the differences in frequency of K.
     [~, ~, ~, ~, K_diff, ~] = identify_regimes(n_Cdc42,BemGEF_list,seeds,standard_num_K, K_file_path);
-    % Find the indices of K_diff in the transient polarity regime.
+    % Find the indices of the transient polarity regime.
     idx_transient_polarity = find(K_diff>=lower_threshold & K_diff<=upper_threshold);
-    % Combine the K values in all of the transient polarity regimes.
+    % Identify and combine K values in all of the transient polarity regimes.
     K_transient_polarity_regime = [K_transient_polarity_regime, K1{1,idx_transient_polarity ,:}, K2{1,idx_transient_polarity,:}];
 end
 % Generate the histogram.

@@ -1,16 +1,17 @@
-% We plotted K values of the simulations with 3000 Cdc42 and 170 Bem1-GEF
-% whose initial condition is pre-polarized active receptors 
+% We plotted K values of the simulations with 3000 Cdc42 and 170 Bem1-GEF.
+% The initial condition is pre-polarized active receptors 
 % and all other molecules are uniformly distributed.
+
 load('FigureData/Figure3E.mat')
 seeds = 10;
-% Color map for the plots
+% Color map for the plots.
 cmap = cool(seeds);
-% Time in the unit of minutes
+% Time in the unit of minutes.
 time = (0:10:4000)/60;
 figure('units','pixels','position',[300 300 900 300]); 
 for j = 1:seeds
     subplot(1,3,1); hold on
-    % Plot time series of K
+    % Plot time series of K.
     plot(time,K(j,:),'color',cmap(j, :),'linewidth',1)
 end
 ylim([0,4])

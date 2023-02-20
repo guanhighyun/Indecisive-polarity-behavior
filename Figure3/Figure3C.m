@@ -1,10 +1,11 @@
-% Here we plotted K values of the simulations with 3000 Cdc42 and 170 Bem1-GEF
-% whose initial condition is uniformly distributed molecules.
+% Here we plotted time evolution of K values of the simulations with 
+% 3000 Cdc42 and 170 Bem1-GEF. The initial conditions are uniformly 
+% distributed cytosolic molecules.
 load('FigureData/Figure3C.mat')
 seeds = 10;
 % Color map for the plots.
 cmap = cool(seeds);
-% Time in the unit of minutes.
+% Time values. Convert seconds to minutes.
 time = (0:10:4000)/60;
 figure('units','pixels','position',[300 300 1200 300]); 
 for j = 1:seeds
@@ -20,7 +21,7 @@ axis square
 set(gca,'fontsize',25)
 
 % Mark one line of K in black and plot its snapshots of Cdc42-GTP
-% at different time points. 
+% distribution at different time points. 
 plot(time,K(5,:),'color','k','linewidth',4)
 load('Coordinates/Figure3C_coordinates.mat')
 L = 8.8623; % domain length

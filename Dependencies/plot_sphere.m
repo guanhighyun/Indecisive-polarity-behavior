@@ -1,3 +1,6 @@
+% Plot a 3D sphere as the simulated cell to generate snapshots of molecular
+% distribution on the sphere.
+
 % Inputs:
 % X, Y, Z: coordinates of the molecules.
 % degree1, degree2:  sets the azimuth and elevation angles of the camera's 

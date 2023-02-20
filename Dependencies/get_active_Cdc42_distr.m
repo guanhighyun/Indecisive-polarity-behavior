@@ -2,15 +2,16 @@
 % Ramirez SA, Pablo M, Burk S, Lew DJ, Elston TC (2021). 
 % PLoS Comput Biol 17(7): e1008525.
 
+% Extract coordinates of active Cdc42.
+
 % Inputs: 
-% positions: coordinates of all molecules
-% nframes: total number of time points in the simulation
+% positions: coordinates of all molecules.
+% nframes: total number of time points in the simulation.
 
 % Output:
-% active_cdc42: The coordinates of Cdc42-GTP and Bem1-GEF-Cdc42-GTP at each
-% time point.
+% active_cdc42: The coordinates of active Cdc42 at each time point.
+
 function active_cdc42 = get_active_Cdc42_distr(positions,nframes)
-% Record coordinates of Cdc42-GTP at each time point
 active_cdc42 = cell(1,nframes); 
 for i=1:nframes
     if ~isempty(positions.Cdc42T{i}) && ~isempty(positions.BemGEF42{i})

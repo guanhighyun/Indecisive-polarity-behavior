@@ -17,13 +17,13 @@ for j = 1:seeds
 end
 % Mark the time point where uniform pheromone was switched to a pheromone
 % gradient.
-patch([0,0,1000/60,1000/60],[0,4,4,0],'r',...
+patch([0,0,300/60,300/60],[0,4,4,0],'r',...
     'edgecolor','r','facealpha',0.15,'edgealpha',0.15)
-plot([1000/60,1000/60],[0,4],'k-','linewidth',4)
-patch([8000/60,8000/60,1000/60,1000/60],[0,4,4,0],'c',...
+plot([300/60,300/60],[0,4],'k-','linewidth',4)
+patch([8000/60,8000/60,300/60,300/60],[0,4,4,0],'c',...
     'edgecolor','c','facealpha',0.15,'edgealpha',0.15)
 ylim([0,4])
-xlim([0,6000/60])
+xlim([0,8000/60])
 xlabel('Time (min)')
 ylabel('K')
 set(gca,'fontsize',35)

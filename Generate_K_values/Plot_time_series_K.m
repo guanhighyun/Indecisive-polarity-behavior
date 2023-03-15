@@ -9,7 +9,7 @@ nframes = 401;
 % the complex Bem1-GEF-Cdc42-GTP)
 [active_xyz] = get_active_Cdc42_distr(coordinates,nframes);
 K = nan(1,nframes);
-r = 0.5:0.1:L/2; % The range of search radius for calculation of Ripley's K
+r = 0.5:0.1:2.5; % The range of search radius for calculation of Ripley's K
 for i = 1:nframes
 K(i) = max(compute_Kr(active_xyz{i}(:,1),active_xyz{i}(:,2),r,L));
 end

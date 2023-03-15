@@ -29,12 +29,12 @@ L = 8.8623; % domain length
 subplot(1,4,2)
 plot(x_1,y_1,'b.')
 xticks([]); yticks([]); ylim([0,L]); xlim([0,L]); axis square;
-xlabel('2 min','fontsize',25)
+xlabel('11 min','fontsize',25)
 
 subplot(1,4,3)
 plot(x_2,y_2,'b.')
 xticks([]); yticks([]); ylim([0,L]); xlim([0,L]); axis square;
-xlabel('17 min','fontsize',25)
+xlabel('49 min','fontsize',25)
 
 subplot(1,4,4)
 plot(x_3,y_3,'b.')

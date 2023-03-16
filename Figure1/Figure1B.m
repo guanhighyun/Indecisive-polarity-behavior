@@ -49,5 +49,5 @@ ylabel('Number of Cdc42')
 set(gca,'fontsize',10)
 xlim([0,550])
 ylim([1800,3500])
-set(gcf,'Position',[300 300 600 600]); 
+set(gcf,'Position',[300 300 600 300]); 
 set(gca,'fontsize',25)

@@ -1,5 +1,5 @@
 % Plot the snapshots of 3D Cdc42-GTP distribution at different time points. 
-load('Coordinates/Figure6F_coordinates.mat')
+load('Coordinates/Figure7B_coordinates.mat')
 r = 2.5;
 figure('units','pixels','position',[300 300 1800 600]); 
 subplot(1,4,1)

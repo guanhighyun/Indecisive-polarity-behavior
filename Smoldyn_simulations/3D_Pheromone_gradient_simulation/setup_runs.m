@@ -2,7 +2,7 @@
 % Clark-Cotton MR, Henderson NT, Pablo M, Ghose D, Elston TC, Lew DJ. 
 % Mol Biol Cell. 2021;32(10):1048-1063.
 
-dirToWrite = 'PointSourcePheromoneSimulation_1'; % directory where we write and store our cfg file for Smoldyn simulations.
+dirToWrite = 'PointSourcePheromoneSimulation'; % directory where we write and store our cfg file for Smoldyn simulations.
 % generate the directory
 mkdir(dirToWrite);
 % open the run_all.sh bash file and write command lines into it

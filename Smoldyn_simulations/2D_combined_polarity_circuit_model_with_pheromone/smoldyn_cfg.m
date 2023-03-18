@@ -249,12 +249,18 @@ fprintf(fid,'compartment_mol %i BemGEFc full_domain\n',n_BemGEF);
 fprintf(fid,'compartment_mol %i FarGEF full_domain\n',n_FarGEF);
 fprintf(fid,'compartment_mol 500 Ric full_domain\n');
 fprintf(fid,'compartment_mol 2000 Rim full_domain\n');
-% First 1000 seconds, apply uniform pheromone
-% After 1000 seconds, apply a pheromone gradient at the upper left corner
-% of the domain
-% The distribution of pheromone and the emission rate can be adjusted as needed
-fprintf(fid,'cmd I 1 %g 1 set compartment_mol 1 phe full_domain\n',tstop/dt);
-fprintf(fid,'cmd I 10000000 %g 15 gaussiansource phe 1 3*L/4 0.5 3*L/4 0.5\n',tstop/dt);
+% Apply uniform pheromone all over the domain from start to end of the simulation.
+% Here, one pheromone molecule is injected into the domain every 4 time steps.
+% That will generate 1 nM of uniform pheromone.
+% The injection rate and amount can be adjusted as needed.
+fprintf(fid,'cmd I 1 %g 4 set compartment_mol 1 phe full_domain\n',tstop/dt);
+% After 300 seconds, apply a pheromone gradient at the upper left corner (4/3*L, 4/3*L)
+% of the domain. The distribution follows a Gaussian with sd = 0.5.
+% Here, one pheromone molecule is injected into the gradient area every 35 
+% time steps. Combined with 1 nM uniform pheromone, that will generate 1-6 nM 
+% of pheromone gradient.
+% The injection rate and amount can be adjusted as needed.
+fprintf(fid,'cmd I 3000000 %g 35 gaussiansource phe 1 3*L/4 0.5 3*L/4 0.5\n',tstop/dt);
 
 % Output coordinates of molecules in the "xyz_name" file
 fprintf(fid,'output_files %s\n',xyz_name);

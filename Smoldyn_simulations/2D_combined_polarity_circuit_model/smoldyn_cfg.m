@@ -198,10 +198,6 @@ fprintf(fid,'binding_radius FarGEF_bindTo_Ra rho\n');
 fprintf(fid,'reaction RaGEF_dissociation RaGEF -> Ram + FarGEF k8b\n');
 fprintf(fid,'product_placement RaGEF_dissociation unbindrad rho+rho_eps\n');
 
-% RaGEF → Ric + Far1-GEF
-fprintf(fid,'reaction RaGEF_endocytosis RaGEF -> Ric + FarGEF k10\n');
-fprintf(fid,'product_placement RaGEF_endocytosis unbindrad rho+rho_eps\n');
-
 % Cdc42Dm + RaGEF -> Cdc42T + RaGEF
 fprintf(fid,'reaction Cdc42D_2_T_bindTo_RaGEF  Cdc42Dm + RaGEF -> complex_Cdc42D_Ra\n');
 fprintf(fid,'reaction Cdc42D_2_T_catBy_RaGEF complex_Cdc42D_Ra -> Cdc42T + RaGEF\n');

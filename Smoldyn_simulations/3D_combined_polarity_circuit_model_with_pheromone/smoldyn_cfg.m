@@ -1,4 +1,4 @@
-% Adapted from the code from Ramirez SA, Pablo M, Burk S,
+% Adapted from "make_smoldyn_cfg.m" from Ramirez SA, Pablo M, Burk S,
 % Lew DJ, Elston TC (2021). PLoS Comput Biol 17(7): e1008525.
 % Also adapted from the code from Clark-Cotton MR, Henderson NT, Pablo M,
 % Ghose D, Elston TC, Lew DJ (2021). MBoC 32(10):1048-1063.
@@ -62,6 +62,8 @@ fprintf(fid,'variable rho_eps = 0.00001\n');
 % Set the diameter and radius of the sphere.
 fprintf(fid,'variable d_sphere = %g\n',d_sphere);
 fprintf(fid,'variable r_sphere = %g\n',r_sphere);
+% Domain size.
+fprintf(fid,'variable d_simdomain 7\n');
 
 % Reaction rates
 fprintf(fid,'variable k1a = %g\n',k1a);
@@ -85,9 +87,9 @@ fprintf(fid,'variable k15 = %g\n',k15);
 
 % Define domain boundaries
 fprintf(fid,'dim 3\n');
-fprintf(fid,'boundaries x -10 10\n');
-fprintf(fid,'boundaries y -10 10\n');
-fprintf(fid,'boundaries z -10 10\n');
+fprintf(fid,'boundaries x -d_simdomain+r_sphere d_simdomain+r_sphere\n');
+fprintf(fid,'boundaries y -d_simdomain d_simdomain\n');
+fprintf(fid,'boundaries z -d_simdomain d_simdomain\n');
 
 % Define species
 % Cdc42T: Cdc42-GTP
@@ -100,8 +102,10 @@ fprintf(fid,'boundaries z -10 10\n');
 % Ra: Active receptor
 % Ri: Inactive receptor
 % FarGEF: Far1-GEF
+% phe: pheromone (in the gradient)
+% phe_uni: uniform pheromone
 fprintf(fid,'species Cdc42T Cdc42D BemGEF BemGEF42 complex_Cdc42D_BemGEF42 complex_Cdc42D_BemGEF\n');
-fprintf(fid,'species Ra Ri FarGEF RaGEF phe\n');
+fprintf(fid,'species Ra Ri FarGEF RaGEF phe phe_uni\n');
 fprintf(fid,'species complex_Cdc42D_Ra complex_Ri_Cdc42T\n');
 
 % Define diffusion rates. Dm: membrane diffusion rate. Dc: cytosolic
@@ -162,6 +166,23 @@ fprintf(fid,'start_compartment full_domain\n');
 fprintf(fid,'surface inner_walls\n');
 fprintf(fid,'point 0 0 0\n');
 fprintf(fid,'end_compartment\n');
+
+% Define the boundary where uniform pheromone is absorbed.
+fprintf(fid,'start_surface uniform_pheromone_boundary\n');
+fprintf(fid,'polygon both edge\n');
+fprintf(fid,'action both phe transmit\n');
+fprintf(fid,'action both phe_uni absorb\n');
+fprintf(fid,'panel sphere 0 0 0 r_sphere+0.249 50 50\n');
+fprintf(fid,'end_surface\n\n');
+
+% Define the compartment where we inject uniform pheromone.
+fprintf(fid,'start_compartment uniform_pheromone_compartment\n');
+fprintf(fid,'surface uniform_pheromone_boundary\n');
+fprintf(fid,'surface inner_walls\n');
+% Generate 100 reference points uniformly in the compartment so that 
+% Smoldyn know between which boundaries to input uniform pheromone molecules.
+generate_reference_point_for_compartment(100,r_sphere,fid);
+fprintf(fid,'end_compartment\n\n');
 
 % Define reactions
 % Bem1-GEFm + Cdc42Dm -> Bem1-GEFm + Cdc42T
@@ -244,6 +265,12 @@ fprintf(fid,'compartment_mol %i BemGEF(soln) full_domain\n',n_BemGEF);
 fprintf(fid,'compartment_mol %i FarGEF(soln) full_domain\n',n_FarGEF);
 fprintf(fid,'surface_mol 2000 Ri(down) inner_walls sphere panel_inner\n');
 fprintf(fid,'compartment_mol 500 Ri(soln) full_domain\n');
+% First 300 seconds, apply uniform pheromone
+fprintf(fid,'cmd I 1 %d 1 set compartment_mol 3 phe_uni(soln) uniform_pheromone_compartment\n',1,tstop/dt);
+% After 300 seconds, apply a pheromone gradient at the upper left corner
+% of the domain
+% The distribution of pheromone and the emission rate can be adjusted as needed
+write_vesicle_events(fid,tstop,r_sphere);
 
 % Output coordinates of molecules in the "xyz_name" file
 fprintf(fid,'output_files %s\n',xyz_name);
@@ -258,8 +285,6 @@ fprintf(fid,'cmd N %i molpos RaGEF(down) %s\n',samplingrate,xyz_name);
 fprintf(fid,'cmd N %i molpos FarGEF(soln) %s\n',samplingrate,xyz_name);
 fprintf(fid,'cmd N %i molpos Ri(down) %s\n',samplingrate,xyz_name);
 fprintf(fid,'cmd N %i molpos Ri(soln) %s\n',samplingrate,xyz_name);
-
-write_vesicle_events(fid,tstop,r_sphere);
 end
 
 function write_vesicle_events(fid,tstop,r_sphere)
@@ -276,5 +301,16 @@ for i=1:numel(times)
     % Release 1663 pheromone once when simulation time exceeds times(i)
     % Vesicles are released 0.25 um away from the cell cortex
     fprintf(fid,'cmd @ %.4f pointsource phe 1663 %g 0 0\n',times(i),r_sphere+0.25);
+end
+end
+
+function generate_reference_point_for_compartment(N,r_sphere,fid)
+[uni_phe_coordinates,~,~,~] = ParticleSampleSphere('N',N);
+[az, el, ~] = cart2sph(uni_phe_coordinates(:,1),uni_phe_coordinates(:,2),uni_phe_coordinates(:,3));
+radius = r_sphere + 0.125;
+[uni_phe_x, uni_phe_y, uni_phe_z] = sph2cart(az, el, radius);
+for i = 1:N
+    fprintf(fid,'point %g %g %g\n',uni_phe_x(i),...
+        uni_phe_y(i), uni_phe_z(i));
 end
 end

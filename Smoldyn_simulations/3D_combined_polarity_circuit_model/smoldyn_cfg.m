@@ -192,10 +192,6 @@ fprintf(fid,'binding_radius FarGEF_bindTo_Ra rho\n');
 fprintf(fid,'reaction RaGEF_degradation RaGEF(down) -> Ra(down) + FarGEF(bsoln) k8b\n');
 fprintf(fid,'product_placement RaGEF_degradation unbindrad rho+rho_eps\n');
 
-% RaGEF → Ric + Far1-GEF
-fprintf(fid,'reaction RaGEF_endocytosis RaGEF(down) -> Ra(bsoln) + FarGEF(bsoln) k10\n');
-fprintf(fid,'product_placement RaGEF_endocytosis unbindrad rho+rho_eps\n');
-
 % Cdc42Dm + RaGEF -> Cdc42T + RaGEF
 fprintf(fid,'reaction Cdc42D_2_T_bindTo_RaGEF  Cdc42D(down) + RaGEF(down) -> complex_Cdc42D_Ra(down)\n');
 fprintf(fid,'reaction Cdc42D_2_T_catBy_RaGEF complex_Cdc42D_Ra(down) -> Cdc42T(down) + RaGEF(down)\n');

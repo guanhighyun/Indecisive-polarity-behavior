@@ -10,7 +10,7 @@ index = repelem(Far_totalcluster,1,numel(random_seeds));
 % Make the list of categorical variables for nicer plots.
 index = categorical(index);
 % Reshape the data for nicer plots.
-data = reshape(first_pol_time,1,numel(first_pol_time));
+data = reshape(time_till_stabilization,1,numel(time_till_stabilization));
 % Generate the plot.
 swarmchart(index,data/60,50,'k','filled'); hold on;
 boxchart(index,data/60,'boxfacecolor','b','BoxFaceColorMode','manual',...

@@ -14,30 +14,36 @@ percentage_polarized_states = nan(numel(random_seeds),numel(sigma));
 for i = 1:numel(sigma)
     for j = random_seeds
         current_K = K{j,i};
-        percentage_polarized_states(j,i) = sum(current_K>=1.5)/numel(current_K)*100;
+        percentage_polarized_states(j,i) = sum(current_K>=1.5)/sum(~isnan(current_K));
     end
 end
 
-% Generate the figure.
-figure; hold on
-bar(sigma,nanmean(percentage_polarized_states),...
-    'facecolor','#4DBEEE','linewidth',4,'facealpha',0.4,'edgecolor','#0072BD')
-% Here we use the standard error of the mean as we are interested in 
-% the mean percentage.
-errorbar(sigma,nanmean(percentage_polarized_states),...
-    nanstd(percentage_polarized_states)/sqrt(height(percentage_polarized_states)),...
-    '.','linewidth',4,'color','#0072BD')
-set(gcf,'Position',[300 300 550 450]); 
+figure('position',[300 300 700 700]);
+% Create a list of number of Far1-GEF clusters for the swarmchart and boxchart.
+index = repelem(sigma,1,numel(random_seeds));
+% Make the list of categorical variables for nicer plots.
+index = categorical(index);
+% Reshape the data for nicer plots.
+data = reshape(percentage_polarized_states,1,numel(percentage_polarized_states));
+% Generate the plot.
+subplot(3,3,1:6)
+swarmchart(index,data,100,'k','filled'); hold on;
+%boxchart(index,data,'boxfacecolor','b','BoxFaceColorMode','manual',...
+%'markercolor','none','linewidth',3.5);
+text(3.4,-0.4,'Dispersion (\sigma)','fontsize',25)
+ylabel('Fraction of time in polarized states')
+set(gca,'linewidth',3)
+xticklabels(sigma);
+set(gca,'TickDir','out');
 set(gca,'fontsize',25)
-xlabel('Dispersion (\sigma)')
-ylabel('Percentage of polarization (%)')
 hold off
 
 % Visualize the distribution of receptors with different dispersion.
 L = 8.8623; % domain length
-for sigma = [0.75,1.5,2.5]
-    x = normrnd(L/2,sigma,[1,2500]);
-    y = normrnd(L/2,sigma,[1,2500]);
-    figure; plot(x,y,'k.'); axis([0,L,0,L])
-    axis square; set(gca,'YTickLabel',[]); set(gca,'XTickLabel',[])
+for m = sigma
+    x = normrnd(L/2,m,[1,2500]);
+    y = normrnd(L/2,m,[1,2500]);
+    axes('Position',[m*0.39-0.15 0.25 .08 .08])
+    scatter(x,y,1,'k','markerfacecolor','k','markeredgecolor','none'); axis([0,L,0,L])
+    axis square; set(gca,'YTickLabel',[]); set(gca,'XTickLabel',[]); box on; set(gca,'linewidth',1)
 end

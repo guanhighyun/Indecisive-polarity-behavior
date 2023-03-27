@@ -44,10 +44,12 @@ for i = 1:numel(n_Cdc42_list)
             'linewidth',0.1,'markersize',15);
     end
 end
-xlabel('Number of Bem1-GEF')
-ylabel('Number of Cdc42')
-set(gca,'fontsize',10)
-xlim([0,550])
-ylim([1800,3500])
-set(gcf,'Position',[300 300 600 300]); 
-set(gca,'fontsize',25)
+xlim([-4,550])
+ylim([1680,3600])
+set(gca,'ytick',[1800,2000,2200,2500,2800,3000,3200,3500],'fontsize',15)
+set(gca,'xtick',0:100:550,'fontsize',15)
+set(gca,'TickDir','out');
+set(gcf,'Position',[300 300 450 250]); 
+xlabel('Number of Bem1-GEF','fontsize',20)
+ylabel('Number of Cdc42','fontsize',20)
+set(gca,'LineWidth',3)

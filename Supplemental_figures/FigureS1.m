@@ -16,7 +16,8 @@ function plot_nexttile(x,y,r,L)
 nexttile;
 % Compute the maximum K value of the current molecular distribution
 H = max(compute_Kr(x,y,r,L));
-plot(x,y,'b.','linewidth',0.1,'markersize',0.01);  
+plot(x,y,'b.');  
 title(sprintf('%.1f',H),'fontsize',25)
 axis([-L/2,L/2,-L/2,L/2]); axis square; set(gca,'xtick',[]); set(gca,'ytick',[]); 
+set(gca,'linewidth',3)
 end

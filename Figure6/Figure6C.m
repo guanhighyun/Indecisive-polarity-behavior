@@ -2,42 +2,38 @@
 % gradients. All concentrations were time-averaged from 50 simulations.
 
 load('FigureData/Figure6C.mat')
-figure('position',[300 300 400 450]); axis square; hold on
-p1 = bar(distance,nanmean(concentration_3D),...
-    'facecolor','#4DBEEE','linewidth',4,'facealpha',0.4,'edgecolor','#0072BD');
-errorbar(distance,nanmean(concentration_3D),nanstd(concentration_3D),...
-    '.','linewidth',4,'color','#0072BD')
-p2 = bar(distance,nanmean(concentration_2D),...
-    'facecolor','#D95319','linewidth',4,'facealpha',0.4,'edgecolor','#A2142F');
-errorbar(distance,nanmean(concentration_2D),nanstd(concentration_2D),...
-    '.','linewidth',4,'color','#A2142F')
-legend([p1 p2], '3D', '2D')
-set(gcf,'Position',[300 300 600 500]); 
+figure('position',[300 300 500 700]); subplot(3,3,1:6);
+data = [mean(concentration_2D)',mean(concentration_3D)'];
+data_error = [std(concentration_2D)',std(concentration_3D)'];
+h = bar(distance,data,1,'grouped'); hold on
+plot_histogram_errorbar(h, data, data_error)
+
 set(gca,'fontsize',25)
-xlabel('Distance from the pheromone source (\mum)')
 ylabel('Pheromone concentration (nM)')
-hold off
-%{
+xticks(distance)
+xticklabels({'0','0.3','0.6','0.9','1.2','1.5','1.8','2.1'})
+set(gca,'linewidth',3)
+legend(h,'2D','3D')
+box on
+text(-0.4,-0.7,'Distance from the pheromone source (\mum)','fontsize',25)
+
 % Visualize the distance from the pheromone source.
 L = 8.8623;
 space = 0.3;
 draw_filled_circle(L,space)
-%}
+
 function draw_filled_circle(L,space)
 N = floor(L/4/space); 
 centers = repmat([3/4*L,3/4*L],[N,1]);
 center = [3/4*L,3/4*L];
 radius = [0,space:space:L/4];
-figure('units','pixels','position',[0 0 1000,300]);
-tiledlayout(1,numel(radius)-1,'tilespacing','compact')
 for i = 1:numel(radius)-1
-    nexttile; hold on; 
-    viscircles(centers,radius(2:end),'color','k','linewidth',3)
-    axis equal
-    for curr_rad = radius(i):0.05:radius(i+1)
-        viscircles(center,curr_rad,'color','k','linewidth',0.2)
-    end
-    box on
+    axes('Position',[i*0.112+0.02 0.25 .1 .1]); hold on;
+    viscircles(centers,radius(2:end),'color','k','linewidth',1)
+    curr_rad = (radius(i)+radius(i+1))/2;
+    viscircles(center,curr_rad,'color','k','linewidth',5)
+    axis square; set(gca,'YTickLabel',[]); set(gca,'XTickLabel',[]);
+    box on; axis equal
     axis off 
     set(gca, 'color', 'none');
 end

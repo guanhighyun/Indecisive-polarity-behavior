@@ -1,7 +1,7 @@
 % Here we plotted the relationship between K at the final time point (4000
 % seconds) and number of Far1-GEF.
 load('FigureData/Figure4C.mat')
-figure('position',[300,300,550,400]); hold on;
+figure('position',[300,300,550,600]); hold on;
 % Separate K into K>=1.5 and K<1.5.
 data1 = K;
 data2 = K;
@@ -18,11 +18,12 @@ shadedErrorBar(n_FarGEF,nanmean(data1),nanstd(data1),...
 shadedErrorBar(n_FarGEF,nanmean(data2),nanstd(data2),...
     'LineProps',{'Marker','.','Markersize',30,'Linewidth',3,'Color','k'},...
     'transparent',true,'patchSaturation',0.1)
-ylabel('K at 4000 seconds');
-xlabel('Number of FarGEF');
+ylabel('K at the final time point');
+xlabel('Number of Far1-GEF molecules');
 xlim([0 55]);
-ylim([0 4]);
+ylim([0 6]);
 set(gca,'FontSize',25);
+set(gca,'linewidth',3)
 
 % Plot the start and end of the bifurcation.
 plot([22,22],[0.4068,3.0224],'LineWidth',2,'LineStyle','--','Color',[0 0 0]);
@@ -37,10 +38,12 @@ plot(n_FarGEF(16),nanmean(data2(:,16)),'b.','Markersize',30);
 
 load('Coordinates/Figure4C_coordinates.mat')
 L = 8.8623; % domain length
-figure; plot(x_1,y_1,'b.')
+figure('position',[300,300,300,300]); plot(x_1,y_1,'b.')
 xticks([]); yticks([]); ylim([0,L]); xlim([0,L]); axis square;
-figure; plot(x_2,y_2,'b.')
+set(gca,'linewidth',3)
+figure('position',[300,300,300,300]); plot(x_2,y_2,'b.')
 xticks([]); yticks([]); ylim([0,L]); xlim([0,L]); axis square;
+set(gca,'linewidth',3)
 
 function data = control_data_quality(data)
 for i = 1:size(data,2)

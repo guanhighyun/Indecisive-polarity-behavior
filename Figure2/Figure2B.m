@@ -13,20 +13,23 @@ tiledlayout(2,2,'TileSpacing','compact')
 nexttile
 plot(x_1,y_1,'b.','markersize',0.5)
 xticks([]); yticks([]); ylim([0,L]); xlim([0,L]); axis square;
+set(gca,'linewidth',3)
+ylabel('Cdc42-GTP','fontsize',25)
 
 nexttile
 plot(x_2,y_2,'b.','markersize',0.5)
 xticks([]); yticks([]); ylim([0,L]); xlim([0,L]); axis square;
+set(gca,'linewidth',3)
 
 nexttile
 plot(x_3,y_3,'.','color','#A2142F','markersize',0.5)
 xticks([]); yticks([]); ylim([0,L]); xlim([0,L]); axis square;
 xlabel('0 min','fontsize',25)
+set(gca,'linewidth',3)
+ylabel('Active receptors','fontsize',25)
 
 nexttile
 plot(x_4,y_4,'.','color','#A2142F','markersize',0.5)
 xticks([]); yticks([]); ylim([0,L]); xlim([0,L]); axis square;
 xlabel('0.3 min','fontsize',25)
-
-text(-5,22.5,'Cdc42-GTP','fontsize',25)
-text(-6,10,'Active receptors','fontsize',25)
+set(gca,'linewidth',3)

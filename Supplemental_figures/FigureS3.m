@@ -19,6 +19,13 @@ xlabel('Time (min)')
 ylabel('K')
 axis square
 set(gca,'fontsize',25)
+set(gca,'linewidth',3)
+set(gca,'TickDir','out');
+xticks([17,50,66])
+set(gca,'xticklabel',[])
+text(68,0,'66','fontsize',25)
+title('Ripley''s K function values','fontsize',25,'position',[35,4.4])
+set(gca,'TickLength',[0.08, 0.01])
 
 % Mark one line of K in black and plot its snapshots of Cdc42-GTP
 plot(time,K(5,:),'color','k','linewidth',4)
@@ -27,16 +34,19 @@ subplot(2,4,2)
 plot(x_1,y_1,'b.')
 xticks([]); yticks([]); ylim([0,L]); xlim([0,L]); axis square;
 xlabel('17 min','fontsize',25)
+set(gca,'linewidth',3)
 
 subplot(2,4,3)
 plot(x_2,y_2,'b.')
 xticks([]); yticks([]); ylim([0,L]); xlim([0,L]); axis square;
 xlabel('50 min','fontsize',25)
+set(gca,'linewidth',3)
 
 subplot(2,4,4)
 plot(x_3,y_3,'b.')
 xticks([]); yticks([]); ylim([0,L]); xlim([0,L]); axis square;
 xlabel('66 min','fontsize',25)
+set(gca,'linewidth',3)
 
 % Here we plotted Ripley's K function values calculated from the simulations 
 % with 3000 initially uniformly distributed cytosolic Cdc42-GDP, 280 Bem1-GEF, 30
@@ -58,6 +68,12 @@ xlabel('Time (min)')
 ylabel('K')
 axis square
 set(gca,'fontsize',25)
+set(gca,'linewidth',3)
+set(gca,'TickDir','out');
+xticks([17,50,66])
+set(gca,'xticklabel',[])
+text(68,0,'66','fontsize',25)
+set(gca,'TickLength',[0.08, 0.01])
 
 % Mark one line of K in black and plot its snapshots of Cdc42-GTP
 plot(time,K(5,:),'color','k','linewidth',4)
@@ -66,13 +82,16 @@ subplot(2,4,6)
 plot(x_1,y_1,'b.')
 xticks([]); yticks([]); ylim([0,L]); xlim([0,L]); axis square;
 xlabel('17 min','fontsize',25)
+set(gca,'linewidth',3)
 
 subplot(2,4,7)
 plot(x_2,y_2,'b.')
 xticks([]); yticks([]); ylim([0,L]); xlim([0,L]); axis square;
 xlabel('50 min','fontsize',25)
+set(gca,'linewidth',3)
 
 subplot(2,4,8)
 plot(x_3,y_3,'b.')
 xticks([]); yticks([]); ylim([0,L]); xlim([0,L]); axis square;
 xlabel('66 min','fontsize',25)
+set(gca,'linewidth',3)

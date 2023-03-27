@@ -1,0 +1,16 @@
+load([])
+figure('Position',[300 300 600 400])
+boxplot([(time_till_stabilization_1'-31)*10./60,(time_till_stabilization_2'-31)*10./60,(time_till_stabilization_3'-31)*10./60])
+hold on; swarmchart(repelem(1,10),(time_till_stabilization_1'-31)*10./60,'linewidth',1)
+swarmchart(repelem(2,10),(time_till_stabilization_2'-31)*10./60,'linewidth',1)
+swarmchart(repelem(3,10),(time_till_stabilization_3'-31)*10./60,'linewidth',1)
+xticklabels({'1-5 nM','1-6 nM','0-1 nM'})
+ylabel('Time to stabilization (min)')
+[~,p] = kstest2((time_till_stabilization_1'-31)*10./60,(time_till_stabilization_2'-31)*10./60);
+text(1.2,75,sprintf('p = %.3f',p),'fontsize',20)
+plot([1,2],[70,70],'k-','linewidth',0.5)
+[~,p] = kstest2((time_till_stabilization_2'-31)*10./60,(time_till_stabilization_3'-31)*10./60);
+plot([2,3],[60,60],'k-','linewidth',0.5)
+text(2.2,65,sprintf('p = %.2e',p),'fontsize',20)
+ylim([0 80])
+set(gca,'fontsize',25)

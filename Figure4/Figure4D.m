@@ -18,7 +18,7 @@ boxchart(index,data/60,'boxfacecolor','b','BoxFaceColorMode','manual',...
 'markercolor','none','linewidth',3.5);
 set(gca,'fontsize',25)
 text(0.8,-18,'Number of Far1-GEF molecules','fontsize',25)
-ylabel('Time to stabilization (min)')
+ylabel('Time to K ≥ 3 (min)')
 set(gca,'linewidth',3)
 
 %% Visualize the spatial distribution of 1, 9, 12 and 14 fixed Far1-GEF molecules.

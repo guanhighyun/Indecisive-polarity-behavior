@@ -1,5 +1,5 @@
 % Create the directory that stores the simulations
-directory = 'GaussianSourcePheromoneSimulation_0.65';
+directory = 'GaussianSourcePheromoneSimulation';
 mkdir(directory);
 
 % End point of the simulation. Units in seconds.

@@ -12,6 +12,6 @@ boxchart(index,data/60,'boxfacecolor','b','BoxFaceColorMode','manual',...
 'MarkerColor','none','linewidth',3.5);
 set(gca,'fontsize',25)
 xlabel({'Pheromone gradient (nM)'})
-ylabel('Time till stabilization (min)')
+ylabel('Time to K ≥ 3 (min)')
 ylim([0, 35])
 set(gca,'linewidth',3)

@@ -27,7 +27,6 @@ text(68,0,'66','fontsize',25)
 title('Ripley''s K function values','fontsize',25,'position',[35,4.4])
 set(gca,'TickLength',[0.08, 0.01])
 
-
 % Mark one plot in black and plot the snapshots of Cdc42-GTP
 plot(time,K(1,:),'color','k','linewidth',4)
 L = 8.8623; % domain length

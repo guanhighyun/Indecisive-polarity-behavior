@@ -1,7 +1,7 @@
 % Here we plotted the relationship between K at the final time point (4000
 % seconds) and receptor residence time.
 load('FigureData/Figure4B.mat')
-figure('position',[300,300,550,600]); hold on;
+figure('position',[300,300,800,600]); hold on;
 % Separate K into K>=1.5 and K<1.5.
 data1 = K;
 data2 = K;

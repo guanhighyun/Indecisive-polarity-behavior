@@ -1,104 +1,61 @@
-% Here we visualized the sigmoidal curves representing the relationship 
-% between difference in frequency of polarized vs unpolarized states and 
-% number of Bem1-GEF. We also visualized the distribution of K at the upper 
-% and lower limit of a specific transient polarity regime.
+% Plot time evolution of molecule number and compare them between 2D and 3D
+% simulations of the combined polarity circuit. Simulations were performed
+% with 3000 Cdc42, 170 Bem1-GEF, 30 Far1-GEF, and 2500 receptors. All
+% molecules were distributed uniformly at the first time point.
 
-% The range of Cdc42 and Bem1-GEF.
-n_Cdc42_list = [1800,2000,2200,2500,2800,3000,3200,3500]; 
-BemGEF_list = 0:0.1:1000; 
-% Number of realizations in each regime.
-seeds = 10; 
-% Number of Ripley's K function values in each regime.
-standard_num_K = 201*2*seeds; 
+load('FigureData/FigureS7.mat')
+figure('position',[300,300,1500,500])
+subplot(2,5,1)
+compare_number(nframes_3D,nframes_2D,nCdc42T_3D,nCdc42T_2D,'Cdc42T','b','r')
+ylabel('Molecule number');
+ylim([0,1500])
+subplot(2,5,2)
+compare_number(nframes_3D,nframes_2D,nBemGEF42_3D,nBemGEF42_2D,'Cdc42T-Bem1-GEF','b','r')
+ylim([0,140])
+subplot(2,5,3)
+compare_number(nframes_3D,nframes_2D,nBemGEFm_3D,nBemGEFm_2D,'Bem1-GEF_m','b','r')
+ylim([0,110])
+subplot(2,5,4)
+compare_number(nframes_3D,nframes_2D,nBemGEFc_3D,nBemGEFc_2D,'Bem1-GEF_c','b','r')
+ylim([0,180])
+subplot(2,5,5)
+compare_number(nframes_3D,nframes_2D,nCdc42Dm_3D,nCdc42Dm_2D,'Cdc42D_m','b','r')
+ylim([0,1500])
+subplot(2,5,6)
+compare_number(nframes_3D,nframes_2D,nCdc42Dc_3D,nCdc42Dc_2D,'Cdc42D_c','b','r')
+ylim([0,3000])
+subplot(2,5,7)
+compare_number(nframes_3D,nframes_2D,nRam_3D,nRam_2D,'Ra_m','b','r')
+ylim([1000,2000])
+subplot(2,5,8)
+compare_number(nframes_3D,nframes_2D,nRac_3D,nRac_2D,'Ri_c','b','r')
+ylim([500,1200])
+xlabel('Time (min)');
+set(gca,'xtick',[0,66])
+subplot(2,5,9)
+compare_number(nframes_3D,nframes_2D,nRaGEF_3D,nRaGEF_2D,'RaGEF','b','r')
+ylim([20,40])
+subplot(2,5,10)
+compare_number(nframes_3D,nframes_2D,nFarGEF_3D,nFarGEF_2D,'Far1-GEF','b','r')
+ylim([0,30])
+set(findall(gcf,'-property','FontSize'),'FontSize',20)
 
-% The file path of stored K values.
-K_file_path = '../K_values/2DCorePolarity';
-
-% Figure S8A: Sigmoidal curves for identifying polarity regimes.
-figure('position',[300,300,650,800]);
-for i = 1:numel(n_Cdc42_list)
-    ax(i) = nexttile; hold on
-    n_Cdc42 = n_Cdc42_list(i);
-    plot_sigmoidal_curve(n_Cdc42,BemGEF_list,seeds,standard_num_K,K_file_path)
-    title(sprintf('%g',n_Cdc42),'fontsize',25)
-end
-text(-300,-10000,'Number of Bem1-GEF','fontsize',25)
-text(-570,18000,'Difference','fontsize',25,'rotation',90)
-set(ax([1,3,5,7]),'ytick',[-5000,5000],'fontsize',20);
-set(ax([7,8]),'xtick',[0,320],'fontsize',20);
-
-% Figure S8B: Visualize the bimodal distribution of K 
-% in the upper and lower limit of the transient polarity regime for 
-% validation of the regime identification methods.
-figure('position',[300 300 600 300]); 
-subplot(1,2,1); hold on; 
-n_Cdc42 = 3000;
-plot_sigmoidal_curve(n_Cdc42,BemGEF_list,seeds,standard_num_K,K_file_path)
-plot(100,-2328,'marker','pentagram','markersize',30,'markerfacecolor','y',...
-'markeredgecolor','k','linewidth',3);
-ylabel('Difference')
-xlabel('Number of Bem1-GEF')
-xlim([0,320]);
-set(gca,'xtick',[0,320]);
-
-subplot(1,2,2); hold on
-load([K_file_path '/K_3000.mat'])
-current_n_BemGEF = n_BemGEF(9);
-current_K1 = K1(1,9,:);
-current_K1 = cellfun(@extract_K,current_K1,'UniformOutput',false);
-current_K2 = K2(1,9,:);
-current_K2 = cellfun(@extract_K,current_K2,'UniformOutput',false);
-current_K = cell2mat([current_K1(:), current_K2(:)]);
-histogram(current_K(:),'binwidth',0.2,'normalization','pdf','facecolor',...
-'#4DBEEE','edgecolor','#4DBEEE')
-% Knernel density estimation for K.
-[density,x] = ksdensity(current_K(:)); 
-% Plot the estimated density.
-plot(x, density, 'k-', 'linewidth',3); 
-ylabel('Density'); xlabel('K'); hold off;
-set(findall(gcf,'-property','FontSize'),'FontSize',25)
-
-% Figure S8C
-figure('position',[300 300 600 300]); 
-subplot(1,2,1); hold on; 
-n_Cdc42 = 3000;
-plot_sigmoidal_curve(n_Cdc42,BemGEF_list,seeds,standard_num_K,K_file_path)
-plot(106,2602,'marker','pentagram','markersize',30,'markerfacecolor','y',...
-'markeredgecolor','k','linewidth',3);
-ylabel('Difference')
-xlabel('Number of Bem1-GEF')
-xlim([0,320]);
-set(gca,'xtick',[0,320]);
-
-subplot(1,2,2); hold on
-current_n_BemGEF = n_BemGEF(12);
-current_K1 = K1(1,12,:);
-current_K1 = cellfun(@extract_K,current_K1,'UniformOutput',false);
-current_K2 = K2(1,12,:);
-current_K2 = cellfun(@extract_K,current_K2,'UniformOutput',false);
-current_K = cell2mat([current_K1(:), current_K2(:)]);
-histogram(current_K(:),'binwidth',0.2,'normalization','pdf','facecolor',...
-'#4DBEEE','edgecolor','#4DBEEE')
-[density,x] = ksdensity(current_K(:)); 
-plot(x, density, 'k-', 'linewidth', 3); 
-ylabel('Density'); xlabel('K'); hold off;
-set(findall(gcf,'-property','FontSize'),'FontSize',25)
-
-function plot_sigmoidal_curve(n_Cdc42,BemGEF_list,seeds,standard_num_K,K_file_path)
-% Identify the indices of the three regimes
-[unpolarized_regime, transient_polarity_regime, polarized_regime, simulated_K_diff, K_diff, n_BemGEF] = identify_regimes(n_Cdc42,BemGEF_list,seeds,standard_num_K,K_file_path);
-% Plot the sigmoidal curve. Colors marked the three different regimes.
-plot(BemGEF_list(unpolarized_regime),simulated_K_diff(unpolarized_regime),'g','linewidth',8);
-plot(BemGEF_list(polarized_regime),simulated_K_diff(polarized_regime),'r','linewidth',8);
-plot(BemGEF_list(transient_polarity_regime),simulated_K_diff(transient_polarity_regime),'b','linewidth',8);
-% Plot the original data generated from particle-based simulations. 
-scatter(n_BemGEF,K_diff,55,'markerfacecolor',[1 1 1],'markeredgecolor','k','markerfacealpha',0.8);
-xlim([0,320])
-ylim([-5000,5000])
-set(gca,'xtick',[]);
-set(gca,'ytick',[]);
+function compare_number(nframes_3D,nframes_2D,molecule_number_3D,molecule_number_2D,figtitle,color1,color2)
+% Convert the unit of the time from seconds to minutes
+%nframes_3D: Time points in 3D simulations
+%nframes_2D: Time points in 2D simulations
+shadedErrorBar((0:10:(nframes_3D-1)*10)/60,nanmean(molecule_number_3D,1),nanstd(molecule_number_3D),...
+    'lineprops',{'linewidth',1,'color',color1,'MarkerFaceColor',color1},'transparent',true,'patchSaturation',0.1)
+hold on
+shadedErrorBar((0:10:(nframes_2D-1)*10)/60,nanmean(molecule_number_2D,1),nanstd(molecule_number_2D),...
+    'lineprops',{'linewidth',1,'color',color2,'MarkerFaceColor',color2},'transparent',true,'patchSaturation',0.1)
+set(gca,'xtick',[])
+title(figtitle)
 end
 
-function K = extract_K(K)
-K = K(201:end);
-end
+
+
+
+
+
+

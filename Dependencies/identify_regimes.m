@@ -91,10 +91,10 @@ K_diff = [-4020,K_diff];
 c_guess_value = n_BemGEF(guess_index);
 
 % Use the "Curve Fitting" Toolbox
-[param, ~] = fit_sigmoidal_curve(n_BemGEF,K_diff,c_guess_value);
+[param, ~] = fit_sigmoidal_curve(n_BemGEF,K_diff,c_guess_value,standard_num_K);
 % Generate simulated difference in frequency of K for a wider range of
 % Bem1-GEF
-simulated_K_diff = param.a./(1+exp(-param.b*(BemGEF_list-param.c)))-param.a/2;
+simulated_K_diff = 2*standard_num_K./(1+exp(-param.b*(BemGEF_list-param.c)))-standard_num_K;
 
 % Identify the indices of the unpolarized regime
 unpolarized_regime = find(simulated_K_diff<lower_threshold);

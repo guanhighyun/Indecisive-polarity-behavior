@@ -24,7 +24,7 @@ xlabel('Time (min)')
 ylabel('K')
 axis square
 set(gca,'fontsize',25)
-title('Ripley''s K function values','fontsize',25,'position',[35,4.3])
+title('Ripley''s K-function values','fontsize',25,'position',[35,4.3])
 set(gca,'linewidth',3)
 set(gca,'TickLength',[0.05, 0.01])
 

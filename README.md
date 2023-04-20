@@ -1,4 +1,4 @@
-### Accompanies the paper: (Guan K, Lew DJ, Elston TC)
+### Accompanies Guan K, Lew DJ, Elston TC. \textsl{How do yeast regulate polarity site dynamics to ensure successful mating}?
 
 All codes were written by Kaiyun Guan unless specifially cited or stated. The simulations were performed on Longleaf, a Linux-based computing system, using Smoldyn v2.67/v2.71 and analyzed in MATLAB 2021a/2021b. Representative scripts and data are provided to generate figures and simulations. 
 

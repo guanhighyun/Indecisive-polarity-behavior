@@ -1,3 +1,5 @@
+% Plot snapshots of Cdc42-GTP distributions.
+
 figure('units','pixels','position',[300 300 1200 300]); 
 load('Coordinates/Figure1D_coordinates.mat')
 L = 8.8623; % domain length.

@@ -2,7 +2,7 @@
 % 3000 Cdc42 and 102 Bem1-GEF. The initial conditions are uniformly 
 % distributed molecules.
 
-load('FigureData/Figure1C.mat')
+load('FigureData/Figure1C_Left.mat')
 seeds = 10;
 % Color map for the plots.
 cmap = cool(seeds);
@@ -29,7 +29,3 @@ set(gca,'TickLength',[0.05, 0.01])
 % Mark one line of K in black and plot its snapshots of Cdc42-GTP
 % distribution at different time points. 
 plot(time,K(9,:),'color','k','linewidth',4)
-% Indicate the time points for the snapshots
-%plot([16,35,45,50,60],[K(9,97),K(9,211),K(9,271),K(9,301),K(9,361)],'d',...
-    %'markersize',15,'markerfacecolor','w','markeredgecolor','k','linewidth',5)
-plot([16,35,45,50,60],[-0.2,-0.2,-0.2,-0.2,-0.2],'k|','linewidth',4)

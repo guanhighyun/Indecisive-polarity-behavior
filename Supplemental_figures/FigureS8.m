@@ -26,7 +26,7 @@ set(gca,'TickDir','out');
 xticks([1,13,24,37,49])
 set(gca,'xticklabel',[])
 text(55,0,'50','fontsize',25)
-title('Ripley''s K-function values','fontsize',25,'position',[35,75])
+title('Ripley''s K-function','fontsize',25,'position',[26,21])
 set(gca,'TickLength',[0.08, 0.01])
 
 % Mark one line of K in black and plot its snapshots of Cdc42-GTP

@@ -28,8 +28,8 @@ ylabel('K')
 set(gca,'fontsize',25)
 set(gca,'linewidth',3)
 text(0,75,'Uniform (1.5 nM)','fontsize',25,'color','#A52A2A')
-text(40,75,'Gradient (1.5-5.8 nM)','fontsize',25,'color','#0072BD')
-title('Ripley''s K-function values','fontsize',30,'position',[25,75])
+text(38,75,'Gradient (1.5-5.8 nM)','fontsize',25,'color','#0072BD')
+title('Ripley''s K-function','fontsize',30,'position',[25,75])
 
 % Mark one line of K in black and  plotted its snapshots of Cdc42-GTP
 % at different time points. 

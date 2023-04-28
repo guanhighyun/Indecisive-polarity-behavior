@@ -1,6 +1,6 @@
 # Yeast polarity circuit model
 
-Accompanies Guan K, Lew DJ, Elston TC. *How do yeast regulate polarity site dynamics to ensure successful mating?*
+Accompanies Guan K, Lew DJ, Elston TC. *Particle-based simulations reveal two positive feedback loops allow relocation and stabilization of the polarity site during yeast mating*
 
 All codes were written by Kaiyun Guan unless specifially cited or stated. The simulations were performed on Longleaf, a Linux-based computing system, using Smoldyn v2.67/v2.71 and analyzed in MATLAB 2021a/2021b. Representative scripts and data are provided to generate figures and simulations. 
 

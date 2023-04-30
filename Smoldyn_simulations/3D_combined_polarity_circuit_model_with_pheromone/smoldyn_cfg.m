@@ -140,7 +140,7 @@ fprintf(fid,'mol_list FarGEF(all) list7\n');
 fprintf(fid,'mol_list phe(all) list8\n');
 fprintf(fid,'mol_list Ri(all) list9\n');
 
-% Define a cell sphere
+% Define a receiver cell sphere
 fprintf(fid,'start_surface inner_walls\n');
 fprintf(fid,'action both all reflect\n');
 fprintf(fid,'polygon both edge\n');
@@ -151,6 +151,13 @@ fprintf(fid,'rate Cdc42D bsoln down k5a\n');
 fprintf(fid,'rate Cdc42D down bsoln k5b\n');
 fprintf(fid,'rate Ri down bsoln k15\n');
 fprintf(fid,'panel sphere 0 0 0 r_sphere 50 50 panel_inner\n');
+fprintf(fid,'end_surface\n');
+
+% Define a emitter cell sphere
+fprintf(fid,'start_surface emitter_walls\n');
+fprintf(fid,'action both all reflect\n');
+fprintf(fid,'polygon both edge\n');
+fprintf(fid,'panel sphere d_sphere+0.251 0 0 r_sphere 10 10 panel_emitter\n');
 fprintf(fid,'end_surface\n');
 
 % Define the outer sphere far away from the cell 

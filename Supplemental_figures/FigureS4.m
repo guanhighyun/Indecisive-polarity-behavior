@@ -1,4 +1,4 @@
-% Similar to Figure S8 but for the model of the combined polarity circuit.
+% Similar to Figure S2 but for the model of the combined polarity circuit.
 
 n_Cdc42_list = [1800,2000,2200,2500,2800,3000,3200,3500]; BemGEF_list = 0:0.1:1000; 
 seeds = 10; 

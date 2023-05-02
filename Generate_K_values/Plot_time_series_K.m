@@ -21,4 +21,4 @@ time = time/60; % convert from seconds to minutes
 plot(time, K, 'linewidth', 4, 'color', 'k'); set(gca,'fontsize',25);
 xlabel('Time (min)'); ylabel('K'); xlim([0,67]); ylim([0,4])
 % This plot is the same as the black line in Figure 3C, which was generated
-% with the .xyz same data file.
+% with the same .xyz data file.

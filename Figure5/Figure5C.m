@@ -1,5 +1,5 @@
-% Plot the spatial distribution of 2D pheromone gradients and 3D pheromone
-% gradients. All concentrations were time-averaged from 50 simulations.
+% Plot the spatial distribution of 3D pheromone gradients (1.5-5.8 nM). 
+% All concentrations were time-averaged from 50 simulations.
 
 load('FigureData/Figure5C.mat')
 figure('position',[300 300 600 700]); subplot(3,3,1:6);

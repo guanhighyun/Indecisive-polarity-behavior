@@ -76,14 +76,15 @@ fprintf(fid,'time_start 0\n');
 fprintf(fid,'time_stop 15\n');
 fprintf(fid,'time_step sim_dt\n\n');
 
-write_vesicle_events(fid);
+phe_number = 650; % Emission rate. Adjust if needed.
+write_vesicle_events(fid, phe_number);
 
 fprintf(fid,'output_files %s.xyz\n',outputname);
 fprintf(fid,'cmd I 50000 150000 1 listmolscmpt pheromone(all) surveillance_compartment %s.xyz\n',outputname);
 fprintf(fid,'end_file\n');
 end
 
-function write_vesicle_events(fid)
+function write_vesicle_events(fid, phe_number)
 % Generate timepoints at which to create vesicles.
 t=0;
 times=[]; % milliseconds
@@ -94,6 +95,6 @@ while t<(15) % 101 second simulation time
 end
 for i=1:numel(times)
     % Release 1663 pheromone once when simulation time exceeds times(i)
-    fprintf(fid,'cmd @ %.4f pointsource pheromone 1663 -sep_dist/2+0.001 0 0\n',times(i));
+    fprintf(fid,'cmd @ %.4f pointsource pheromone %g -sep_dist/2+0.001 0 0\n',times(i), phe_number);
 end
 end

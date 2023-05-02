@@ -23,15 +23,9 @@ figure('position',[300 300 700 700]);
 index = repelem(sigma,1,numel(random_seeds));
 noise = normrnd(0,0.005,[1,numel(random_seeds)*numel(sigma)]);
 index = index + noise;
-% Make the list of categorical variables for nicer plots.
-%index = categorical(index);
-% Reshape the data for nicer plots.
 data = reshape(percentage_polarized_states,1,numel(percentage_polarized_states));
-% Generate the plot.
 subplot(3,3,1:6)
 scatter(index,data,500,'k.'); hold on;
-%boxchart(index,data,'boxfacecolor','b','BoxFaceColorMode','manual',...
-%'markercolor','none','linewidth',3.5);
 text(1.3,-0.4,'Dispersion (\sigma)','fontsize',25)
 ylabel('Fraction of time in polarized states')
 set(gca,'linewidth',3)

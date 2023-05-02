@@ -125,6 +125,7 @@ fprintf(fid,'difc FarGEF(soln) %g\n',Dc);
 fprintf(fid,'difc Ri(soln) %g\n',Dc);
 fprintf(fid,'difc Ri(down) %g\n',0.0001);
 fprintf(fid,'difc phe(soln) %g\n',150);
+fprintf(fid,'difc phe_uni(all) %g\n',150);
 fprintf(fid,'difc complex_Cdc42D_Ra(down) %g\n',0.0001);
 fprintf(fid,'difc complex_Ri_Cdc42T(down) %g\n',0.0001);
 
@@ -155,17 +156,17 @@ fprintf(fid,'end_surface\n');
 
 % Define a emitter cell sphere
 fprintf(fid,'start_surface emitter_walls\n');
-fprintf(fid,'action both all reflect\n');
+fprintf(fid,'action both phe reflect\n');
 fprintf(fid,'polygon both edge\n');
-fprintf(fid,'panel sphere d_sphere+0.251 0 0 r_sphere 10 10 panel_emitter\n');
+fprintf(fid,'panel sphere d_sphere+0.251 0 0 r_sphere 10 10 panel_inner\n');
 fprintf(fid,'end_surface\n');
 
 % Define the outer sphere far away from the cell 
 % where pheromone molecules are absorbed
 fprintf(fid,'start_surface outer_walls\n');
-fprintf(fid,'action both phe absorb\n');
+fprintf(fid,'action both all absorb\n');
 fprintf(fid,'polygon both edge\n');
-fprintf(fid,'panel sphere 0 0 0 10 50 50 panel_inner\n');
+fprintf(fid,'panel sphere r_sphere+0.25/2 0 0 d_simdomain 50 50\n');
 fprintf(fid,'end_surface\n');
 
 % Define the compartment which is required by Smoldyn to input molecules.
@@ -272,12 +273,13 @@ fprintf(fid,'compartment_mol %i BemGEF(soln) full_domain\n',n_BemGEF);
 fprintf(fid,'compartment_mol %i FarGEF(soln) full_domain\n',n_FarGEF);
 fprintf(fid,'surface_mol 2000 Ri(down) inner_walls sphere panel_inner\n');
 fprintf(fid,'compartment_mol 500 Ri(soln) full_domain\n');
-% First 300 seconds, apply uniform pheromone
-fprintf(fid,'cmd I 1 %d 1 set compartment_mol 3 phe_uni(soln) uniform_pheromone_compartment\n',1,tstop/dt);
-% After 300 seconds, apply a pheromone gradient at the upper left corner
-% of the domain
+% First 300 seconds, apply uniform pheromone of 1.5 nM
+fprintf(fid,'cmd I 1 %d 1 set compartment_mol 4 phe_uni(soln) uniform_pheromone_compartment\n',1,tstop/dt);
+% After 300 seconds, apply a pheromone gradient
 % The distribution of pheromone and the emission rate can be adjusted as needed
-write_vesicle_events(fid,tstop,r_sphere);
+phe_number = 650; % For a gradient of 1.5 - 5.8 nM (plus uniform background pheromone)
+% phe_number = 150; % For a gradient of 0 - 1.2 nM
+write_vesicle_events(fid,tstop,r_sphere,phe_number);
 
 % Output coordinates of molecules in the "xyz_name" file
 fprintf(fid,'output_files %s\n',xyz_name);
@@ -294,7 +296,7 @@ fprintf(fid,'cmd N %i molpos Ri(down) %s\n',samplingrate,xyz_name);
 fprintf(fid,'cmd N %i molpos Ri(soln) %s\n',samplingrate,xyz_name);
 end
 
-function write_vesicle_events(fid,tstop,r_sphere)
+function write_vesicle_events(fid,tstop,r_sphere,phe_number)
 % Generate timepoints at which to create vesicles.
 t=0;
 times=[]; % milliseconds
@@ -307,7 +309,7 @@ end
 for i=1:numel(times)
     % Release 1663 pheromone once when simulation time exceeds times(i)
     % Vesicles are released 0.25 um away from the cell cortex
-    fprintf(fid,'cmd @ %.4f pointsource phe 1663 %g 0 0\n',times(i),r_sphere+0.25);
+    fprintf(fid,'cmd @ %.4f pointsource phe %g %g 0 0\n',times(i),phe_number,r_sphere+0.25);
 end
 end
 

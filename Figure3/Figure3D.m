@@ -1,6 +1,7 @@
 % We plotted K values of the simulations with 3000 Cdc42 and 170 Bem1-GEF.
 % The initial condition is pre-polarized Cdc42-GTP and uniformly
-% distributed cytosolic Bem1-GEF.
+% distributed cytosolic Bem1-GEF. Receptor-Far1 pathway was is introduced
+% at 400 secs.
 
 load('FigureData/Figure3D.mat')
 seeds = 10;

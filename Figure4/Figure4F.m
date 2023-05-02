@@ -29,6 +29,7 @@ text(0,-0.5,-3.5,'62 min','fontsize',30)
 % X, Y, Z: coordinates of the molecules.
 % degree1, degree2:  sets the azimuth and elevation angles of the camera's 
 % line of sight for the current axes.
+% r: radius of the sphere.
 
 function plot_sphere(X,Y,Z,r,degree1,degree2)
 [x,y,z]=sphere(100);

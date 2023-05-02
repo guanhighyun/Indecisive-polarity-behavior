@@ -1,3 +1,14 @@
+% Adapted from "read_molPos3.m" from Ramirez SA, Pablo M, Burk S,
+% Lew DJ, Elston TC (2021). PLoS Comput Biol 17(7): e1008525.
+
+% Inputs: 
+% filename: name of the coordinates file.
+% nframes: number of frames of the simulation.
+
+% Outputs:
+% t: time.
+% positions: molecular coordinates.
+
 function [t,positions] = read_molPos3(filename,nframes)
 positions.Cdc42T = cell(nframes,1);
 positions.BemGEF42 = cell(nframes,1);

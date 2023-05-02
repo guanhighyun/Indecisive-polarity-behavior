@@ -4,7 +4,7 @@ Accompanies Guan K, Lew DJ, Elston TC. *Particle-based simulations reveal two po
 
 Link: https://www.biorxiv.org/content/10.1101/2023.05.01.538889v1
 
-All codes were written by Kaiyun Guan unless specifially cited or stated. The simulations were performed on Longleaf, a Linux-based computing system, using Smoldyn v2.67/v2.71 and analyzed in MATLAB 2021a/2021b. Representative scripts and data are provided to generate figures and simulations. 
+All codes were written by Kaiyun Guan unless specifially cited or stated. The simulations were performed on Longleaf, a Linux-based computing system, using Smoldyn v2.67 and analyzed in MATLAB 2021a/2021b. Representative scripts and data are provided to generate figures and simulations. 
 
 ### Contents contain code and data for:
 1. Generating the figures in the main text and supplementary information (`Figure1`, `Figure2`,...,`Figure6`, `Supplemental_figures`).

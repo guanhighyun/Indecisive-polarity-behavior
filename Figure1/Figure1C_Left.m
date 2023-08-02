@@ -22,7 +22,7 @@ set(gca,'TickDir','out');
 xlabel('Time (min)')
 ylabel('K')
 set(gca,'fontsize',25)
-title('Ripley''s-K function','fontsize',25)
+title('Ripley''s K-function','fontsize',25)
 set(gca,'linewidth',3)
 set(gca,'TickLength',[0.05, 0.01])
 

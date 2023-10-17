@@ -1,8 +1,6 @@
 # Yeast polarity circuit model
 
-Accompanies Guan K, Lew DJ, Elston TC. *Particle-based simulations reveal two positive feedback loops allow relocation and stabilization of the polarity site during yeast mating*
-
-Link: https://www.biorxiv.org/content/10.1101/2023.05.01.538889v1
+Accompanies Guan K, Erin CR, Lew DJ, Elston TC. Particle-based simulations reveal two positive feedback loops allow relocation and stabilization of the polarity site during yeast mating. PLoS Comput Biol. 2023 Oct 2;19(10):e1011523. doi: 10.1371/journal.pcbi.1011523. PMID: 37782676; PMCID: PMC10569529.
 
 All codes were written by Kaiyun Guan unless specifially cited or stated. The simulations were performed on Longleaf, a Linux-based computing system, using Smoldyn v2.67 and analyzed in MATLAB 2021a/2021b. Representative scripts and data are provided to generate figures and simulations. 
 
